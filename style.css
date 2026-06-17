@@ -1,0 +1,353 @@
+/* Скидання стилів */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* Основна сторінка */
+.page {
+    min-height: 100vh;
+    background: #020812;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(0, 255, 255, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(180, 0, 255, 0.05) 0%, transparent 60%),
+        linear-gradient(180deg, #020812 0%, #050e1a 100%);
+    color: #e0f7ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 3rem 1rem;
+    font-family: 'Rajdhani', sans-serif;
+    position: relative;
+}
+
+/* Scanline overlay */
+.page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 255, 0.012) 2px,
+        rgba(0, 255, 255, 0.012) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* ── Search ── */
+.searchWrap {
+    position: relative;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: rgba(0, 255, 255, 0.04);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.searchBox:focus-within {
+    border-color: rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 16px rgba(0, 255, 255, 0.15), inset 0 0 12px rgba(0, 255, 255, 0.05);
+}
+
+.searchIcon {
+    color: rgba(0, 255, 255, 0.4);
+    flex-shrink: 0;
+    display: flex;
+}
+
+.searchInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 0.875rem;
+    color: #b0faff;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.05em;
+}
+
+.searchInput::placeholder {
+    color: rgba(0, 255, 255, 0.22);
+}
+
+.unitToggle {
+    background: none;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    cursor: pointer;
+    font-size: 0.7rem;
+    color: rgba(0, 255, 255, 0.45);
+    font-family: 'Share Tech Mono', monospace;
+    padding: 2px 6px;
+    letter-spacing: 0.08em;
+    transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.unitToggle:hover {
+    color: #00ffff;
+    border-color: rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #040e1a;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 255, 255, 0.08);
+    display: none;
+}
+
+.dropdown.active {
+    display: block;
+}
+
+.dropdownItem {
+    display: block;
+    width: 100%;
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+    color: rgba(0, 255, 255, 0.55);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.05em;
+    transition: background 0.15s, color 0.15s;
+}
+
+.dropdownItem:hover {
+    background: rgba(0, 255, 255, 0.07);
+    color: #00ffff;
+}
+
+/* ── Card ── */
+.card {
+    background: rgba(0, 10, 25, 0.8);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    box-shadow:
+        0 0 40px rgba(0, 255, 255, 0.06),
+        inset 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Corner accent lines */
+.card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 40px;
+    height: 40px;
+    border-top: 2px solid #00ffff;
+    border-right: 2px solid #00ffff;
+    box-shadow: 4px -4px 12px rgba(0, 255, 255, 0.4);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    width: 40px;
+    height: 40px;
+    border-bottom: 2px solid rgba(180, 0, 255, 0.7);
+    border-left: 2px solid rgba(180, 0, 255, 0.7);
+    box-shadow: -4px 4px 12px rgba(180, 0, 255, 0.3);
+}
+
+/* ── Hero ── */
+.city {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(0, 255, 255, 0.4);
+    margin-bottom: 1rem;
+}
+
+.temp {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5.5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    text-shadow:
+        0 0 20px rgba(0, 255, 255, 0.8),
+        0 0 60px rgba(0, 255, 255, 0.3),
+        0 0 100px rgba(0, 255, 255, 0.1);
+    letter-spacing: -0.02em;
+}
+
+.condition {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(0, 255, 255, 0.5);
+    margin-top: 0.5rem;
+}
+
+.hiLo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.625rem;
+}
+
+.hiLoItem {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(0, 255, 255, 0.35);
+}
+
+/* ── Divider ── */
+.divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.25), transparent);
+    margin: 0;
+}
+
+/* ── Stats ── */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.statIcon {
+    color: rgba(0, 255, 255, 0.4);
+    display: flex;
+}
+
+.statLabel {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(0, 255, 255, 0.25);
+}
+
+.statValue {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #b0faff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+/* ── Weekly ── */
+.weekly {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.weekRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.375rem 0.5rem;
+    border: 1px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.weekRow:hover {
+    border-color: rgba(0, 255, 255, 0.12);
+    background: rgba(0, 255, 255, 0.03);
+}
+
+.weekDay {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: rgba(0, 255, 255, 0.35);
+    width: 3rem;
+}
+
+.weekIcon {
+    font-size: 1.1rem;
+}
+
+.weekTemps {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+}
+
+.weekHigh {
+    color: #b0faff;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+.weekLow {
+    color: rgba(0, 255, 255, 0.25);
+}
+
+/* Адаптивність */
+@media (max-width: 480px) {
+    .page {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .temp {
+        font-size: 4rem;
+    }
+    
+    .stats {
+        gap: 0.25rem;
+    }
+}
