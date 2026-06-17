@@ -1,0 +1,18 @@
+const API_KEY = "24947e1893d6b221e25f8dcdaa238f4e";
+
+function getWeather() {
+    const city = document.getElementById("city").value;
+
+    fetch(https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=ua)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("weather").innerHTML = `
+                <h2>${data.name}</h2>
+                <p>Температура: ${data.main.temp}°C</p>
+                <p>Погода: ${data.weather[0].description}</p>
+            `;
+        })
+        .catch(() => {
+            document.getElementById("weather").innerHTML =
+                "<p>Не вдалося отримати дані.</p>";
+        });
