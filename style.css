@@ -122,18 +122,3 @@ h1 {
     border-radius: 15px;
 
 }
-.logo-title{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-    margin-bottom:25px;
-    font-size:42px;
-    font-weight:700;
-}
-
-.logo{
-    width:70px;
-    height:70px;
-    object-fit:contain;
-}
