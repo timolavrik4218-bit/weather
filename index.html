@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌤️ Погода</title>
+
+    <title>SkyPulse</title>
+
+
+    <link rel="icon" type="image/png" href="logo.png">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>🌤️ Погода</h1>
-        
+
+        <h1 class="logo-title">
+            <img src="logo.png" alt="SkyPulse" class="logo">
+            SkyPulse
+        </h1>
+
         <div class="search">
             <input type="text" id="cityInput" placeholder="Введіть місто...">
             <button onclick="getWeather()">🔍</button>
@@ -24,6 +33,7 @@
                 <span>💨 <span id="wind">5 м/с</span></span>
             </div>
         </div>
+
     </div>
 
     <script src="script.js"></script>
